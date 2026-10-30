@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>إقدام أسامة | تصميم الهوية البصرية</title>
+<meta name="description" content="إقدام أسامة: تصميم هويات بصرية، لوجوهات، بوسترات، وإعلانات سوشيال ميديا.">
+<style>
+  :root {
+    --bg: #000;
+    --surface: #0d0d12;
+    --text: #fff;
+    --muted: #a8a8b3;
+    --purple: #a855f7;
+    --orange: #f97316;
+    --grad: linear-gradient(90deg, #a855f7, #f97316);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+    line-height: 1.7;
+  }
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; display: block; }
+  section { padding: 90px 6%; }
+
+  /* Header */
+  header {
+    position: fixed; top: 0; inset-inline: 0; z-index: 50;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 16px 6%;
+    background: rgba(0,0,0,.7); backdrop-filter: blur(8px);
+  }
+  .logo { font-weight: 700; letter-spacing: 1px; }
+  .logo span { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  nav a { margin-inline-start: 22px; color: var(--muted); font-size: 15px; }
+  nav a:hover { color: var(--text); }
+
+  /* Hero */
+  .hero {
+    min-height: 100vh; display: grid; grid-template-columns: 1fr 1.2fr;
+    gap: 50px; align-items: center; padding-top: 110px;
+  }
+  .hero h1 { font-size: clamp(34px, 5vw, 60px); line-height: 1.2; margin-bottom: 18px; }
+  .hero h1 span { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .hero p { color: var(--muted); font-size: 18px; max-width: 480px; margin-bottom: 30px; }
+  .btn {
+    display: inline-block; padding: 14px 30px; border-radius: 40px;
+    background: var(--grad); color: #fff; font-weight: 700;
+    box-shadow: 0 0 25px rgba(168,85,247,.35);
+  }
+  .btn:hover { box-shadow: 0 0 35px rgba(249,115,22,.45); }
+  .hero-img {
+    border-radius: 18px; border: 1px solid rgba(168,85,247,.35);
+    box-shadow: 0 0 40px rgba(168,85,247,.2);
+  }
+
+  h2 { font-size: clamp(28px, 4vw, 40px); margin-bottom: 12px; }
+  .sub { color: var(--muted); margin-bottom: 40px; }
+  .section-title { text-align: center; }
+  .section-title h2 { display: inline-block; }
+  .section-title h2::after {
+    content: ""; display: block; margin: 12px auto 0; width: 80px; height: 3px;
+    background: var(--grad); border-radius: 3px;
+  }
+  .section-title .sub { margin-top: 16px; }
+
+  /* Services */
+  .services { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 22px; margin-top: 40px; }
+  .card {
+    background: var(--surface); border: 1px solid rgba(255,255,255,.08);
+    border-radius: 16px; padding: 28px; transition: .3s;
+  }
+  .card:hover { border-color: var(--purple); transform: translateY(-4px); }
+  .card h3 { margin-bottom: 8px; color: #fff; }
+  .card p { color: var(--muted); font-size: 15px; }
+
+  /* Work gallery */
+  .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 22px; margin-top: 40px; }
+  .item {
+    position: relative; overflow: hidden; border-radius: 16px; cursor: zoom-in;
+    background: var(--surface); border: 1px solid rgba(255,255,255,.08);
+  }
+  .item img { width: 100%; height: 280px; object-fit: cover; transition: .4s; }
+  .item:hover img { transform: scale(1.05); }
+  .item .cap {
+    position: absolute; bottom: 0; inset-inline: 0; padding: 14px 16px;
+    background: linear-gradient(transparent, rgba(0,0,0,.9)); font-size: 14px; color: #ddd;
+  }
+  .tag {
+    display: inline-block; font-size: 12px; color: var(--orange);
+    border: 1px solid var(--orange); border-radius: 20px; padding: 2px 10px; margin-bottom: 4px;
+  }
+
+  /* Lightbox */
+  .lightbox {
+    position: fixed; inset: 0; background: rgba(0,0,0,.93); z-index: 100;
+    display: none; align-items: center; justify-content: center; padding: 30px;
+  }
+  .lightbox.open { display: flex; }
+  .lightbox img { max-height: 88vh; max-width: 92vw; border-radius: 12px; }
+  .lightbox button {
+    position: absolute; top: 20px; inset-inline-end: 24px;
+    background: none; border: none; color: #fff; font-size: 40px; cursor: pointer;
+  }
+
+  /* Process */
+  .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 22px; margin-top: 40px; }
+  .step { text-align: center; padding: 20px; }
+  .step .num {
+    width: 56px; height: 56px; margin: 0 auto 14px; border-radius: 50%;
+    background: var(--grad); display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 20px;
+  }
+  .step p { color: var(--muted); font-size: 15px; }
+
+  /* Contact */
+  .contact { text-align: center; background: var(--surface); }
+  .contact p { color: var(--muted); margin-bottom: 28px; }
+  .wa {
+    display: inline-block; padding: 16px 36px; border-radius: 40px;
+    background: #25D366; color: #fff; font-weight: 700; font-size: 18px;
+  }
+  .wa:hover { filter: brightness(1.1); }
+
+  footer { text-align: center; padding: 30px; color: #666; font-size: 14px; border-top: 1px solid rgba(255,255,255,.06); }
+
+  @media (max-width: 800px) {
+    .hero { grid-template-columns: 1fr; text-align: center; }
+    .hero p { margin-inline: auto; }
+    nav a { display: none; }
+    .item img { height: 230px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo"><span>EQDAM</span></div>
+  <nav>
+    <a href="#services">الخدمات</a>
+    <a href="#work">الأعمال</a>
+    <a href="#process">طريقة العمل</a>
+    <a href="#contact">تواصل</a>
+  </nav>
+</header>
+
+<section class="hero" id="top">
+  <div>
+    <h1>أحوّل الفكرة لهوية <span>بصرية تفضل في الذهن</span></h1>
+    <p>تصميم لوجوهات، هويات بصرية كاملة، بوسترات، وإعلانات سوشيال ميديا لشركات ومشاريع تبدأ وتكبر.</p>
+    <a class="btn" href="#contact">اطلب تصميمك</a>
+  </div>
+  <img class="hero-img" src="images/hero.jpg" alt="إقدام أسامة - تصميم وتحليل بيانات">
+</section>
+
+<section id="services">
+  <div class="section-title">
+    <h2>الخدمات</h2>
+    <p class="sub">حلول بصرية تبني الثقة من أول نظرة</p>
+  </div>
+  <div class="services">
+    <div class="card">
+      <h3>تصميم الهوية البصرية</h3>
+      <p>لوجو، ألوان، خطوط، كارت شخصية، وكتيب إرشادات كامل للبراند.</p>
+    </div>
+    <div class="card">
+      <h3>بوسترات وإعلانات</h3>
+      <p>تصميم بوسترات ومنشورات سوشيال ميديا وإعلانات بتوصل الرسالة بسرعة.</p>
+    </div>
+    <div class="card">
+      <h3>تغليف ومنتجات</h3>
+      <p>تصميم أكياس وعلب تغليف وتصورات منتجات تعكس شخصية البراند.</p>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="section-title">
+    <h2>أعمال مختارة</h2>
+    <p class="sub">اضغط على أي عمل لعرضه بالحجم الكامل</p>
+  </div>
+  <div class="gallery">
+    <div class="item" data-src="images/aroma-logo.jpg">
+      <img src="images/aroma-logo.jpg" alt="لوجو Aroma Mills">
+      <div class="cap"><span class="tag">لوجو</span><br>Aroma Mills</div>
+    </div>
+    <div class="item" data-src="images/aroma-packaging.jpg">
+      <img src="images/aroma-packaging.jpg" alt="تغليف Aroma Mills">
+      <div class="cap"><span class="tag">تغليف</span><br>Aroma Mills</div>
+    </div>
+    <div class="item" data-src="images/nasij-winter.jpg">
+      <img src="images/nasij-winter.jpg" alt="بوست Nasij الشتوي">
+      <div class="cap"><span class="tag">سوشيال ميديا</span><br>Nasij - Winter Collection</div>
+    </div>
+    <div class="item" data-src="images/nasij-logo.jpg">
+      <img src="images/nasij-logo.jpg" alt="لوجو Nasij">
+      <div class="cap"><span class="tag">لوجو</span><br>Nasij</div>
+    </div>
+    <div class="item" data-src="images/nasij-bag.jpg">
+      <img src="images/nasij-bag.jpg" alt="تغليف Nasij">
+      <div class="cap"><span class="tag">تغليف</span><br>Nasij</div>
+    </div>
+    <div class="item" data-src="images/khatwa-guidelines.jpg">
+      <img src="images/khatwa-guidelines.jpg" alt="دليل هوية KHATWA">
+      <div class="cap"><span class="tag">هوية بصرية</span><br>KHATWA - Brand Guidelines</div>
+    </div>
+    <div class="item" data-src="images/khatwa-clock.jpg">
+      <img src="images/khatwa-clock.jpg" alt="بوست KHATWA">
+      <div class="cap"><span class="tag">سوشيال ميديا</span><br>KHATWA</div>
+    </div>
+    <div class="item" data-src="images/khatwa-cards.jpg">
+      <img src="images/khatwa-cards.jpg" alt="كارت شخصية KHATWA">
+      <div class="cap"><span class="tag">مطبوعات</span><br>KHATWA - Business Cards</div>
+    </div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="section-title">
+    <h2>طريقة العمل</h2>
+    <p class="sub">خطوات واضحة من الفكرة للتسليم</p>
+  </div>
+  <div class="steps">
+    <div class="step">
+      <div class="num">1</div>
+      <h3>نفهم براندك</h3>
+      <p>بنتكلم عن مشروعك وجمهورك وأهدافك.</p>
+    </div>
+    <div class="step">
+      <div class="num">2</div>
+      <h3>نصمم الفكرة</h3>
+      <p>بنجهز اتجاهات بصرية ونختار الأقوى.</p>
+    </div>
+    <div class="step">
+      <div class="num">3</div>
+      <h3>نعدّل ونسلّم</h3>
+      <p>بنراجع التفاصيل معاك ونسلّم الملفات النهائية.</p>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <h2>خلينا نبدأ مشروعك</h2>
+  <p>ابعتلي على واتساب وقولي فكرتك باختصار.</p>
+  <a class="wa" href="https://wa.me/201061476825" target="_blank" rel="noopener">تواصل عبر واتساب</a>
+</section>
+
+<footer>© إقدام أسامة - جميع الحقوق محفوظة</footer>
+
+<div class="lightbox" id="lightbox">
+  <button id="close" aria-label="إغلاق">&times;</button>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lightbox-img');
+  document.querySelectorAll('.item').forEach(item => {
+    item.addEventListener('click', () => {
+      lbImg.src = item.dataset.src;
+      lb.classList.add('open');
+    });
+  });
+  document.getElementById('close').addEventListener('click', () => lb.classList.remove('open'));
+  lb.addEventListener('click', e => { if (e.target === lb) lb.classList.remove('open'); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') lb.classList.remove('open'); });
+</script>
+
+</body>
+</html>
