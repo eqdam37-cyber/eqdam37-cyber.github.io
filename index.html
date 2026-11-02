@@ -3,8 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>إقدام أسامة | تصميم الهوية البصرية</title>
-<meta name="description" content="إقدام أسامة: تصميم هويات بصرية، لوجوهات، بوسترات، وإعلانات سوشيال ميديا.">
+<title>EQDAM | تصميم الهوية البصرية</title>
+<meta name="description" content="EQDAM: تصميم هويات بصرية، لوجوهات، بوسترات، وإعلانات سوشيال ميديا.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #000;
@@ -20,7 +23,8 @@
   body {
     background: var(--bg);
     color: var(--text);
-    font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+    font-family: "Tajawal", "Segoe UI", Tahoma, Arial, sans-serif;
+    font-size: 17px;
     line-height: 1.7;
   }
   a { color: inherit; text-decoration: none; }
@@ -34,9 +38,9 @@
     padding: 16px 6%;
     background: rgba(0,0,0,.7); backdrop-filter: blur(8px);
   }
-  .logo { font-weight: 700; letter-spacing: 1px; }
+  .logo { font-weight: 800; font-size: 22px; letter-spacing: 3px; direction: ltr; }
   .logo span { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
-  nav a { margin-inline-start: 22px; color: var(--muted); font-size: 15px; }
+  nav a { margin-inline-start: 22px; color: var(--muted); font-size: 16px; font-weight: 500; }
   nav a:hover { color: var(--text); }
 
   /* Hero */
@@ -44,12 +48,12 @@
     min-height: 100vh; display: grid; grid-template-columns: 1fr 1.2fr;
     gap: 50px; align-items: center; padding-top: 110px;
   }
-  .hero h1 { font-size: clamp(34px, 5vw, 60px); line-height: 1.2; margin-bottom: 18px; }
+  .hero h1 { font-size: clamp(36px, 5vw, 62px); font-weight: 800; line-height: 1.25; margin-bottom: 18px; }
   .hero h1 span { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
-  .hero p { color: var(--muted); font-size: 18px; max-width: 480px; margin-bottom: 30px; }
+  .hero p { color: var(--muted); font-size: 19px; max-width: 480px; margin-bottom: 30px; }
   .btn {
-    display: inline-block; padding: 14px 30px; border-radius: 40px;
-    background: var(--grad); color: #fff; font-weight: 700;
+    display: inline-block; padding: 14px 32px; border-radius: 40px;
+    background: var(--grad); color: #fff; font-weight: 700; font-size: 18px;
     box-shadow: 0 0 25px rgba(168,85,247,.35);
   }
   .btn:hover { box-shadow: 0 0 35px rgba(249,115,22,.45); }
@@ -58,7 +62,8 @@
     box-shadow: 0 0 40px rgba(168,85,247,.2);
   }
 
-  h2 { font-size: clamp(28px, 4vw, 40px); margin-bottom: 12px; }
+  h2 { font-size: clamp(30px, 4vw, 42px); font-weight: 800; margin-bottom: 12px; }
+  h3 { font-weight: 700; }
   .sub { color: var(--muted); margin-bottom: 40px; }
   .section-title { text-align: center; }
   .section-title h2 { display: inline-block; }
@@ -75,8 +80,8 @@
     border-radius: 16px; padding: 28px; transition: .3s;
   }
   .card:hover { border-color: var(--purple); transform: translateY(-4px); }
-  .card h3 { margin-bottom: 8px; color: #fff; }
-  .card p { color: var(--muted); font-size: 15px; }
+  .card h3 { margin-bottom: 8px; color: #fff; font-size: 21px; }
+  .card p { color: var(--muted); font-size: 16px; }
 
   /* Work gallery */
   .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 22px; margin-top: 40px; }
@@ -88,10 +93,10 @@
   .item:hover img { transform: scale(1.05); }
   .item .cap {
     position: absolute; bottom: 0; inset-inline: 0; padding: 14px 16px;
-    background: linear-gradient(transparent, rgba(0,0,0,.9)); font-size: 14px; color: #ddd;
+    background: linear-gradient(transparent, rgba(0,0,0,.9)); font-size: 15px; color: #ddd;
   }
   .tag {
-    display: inline-block; font-size: 12px; color: var(--orange);
+    display: inline-block; font-size: 13px; color: var(--orange);
     border: 1px solid var(--orange); border-radius: 20px; padding: 2px 10px; margin-bottom: 4px;
   }
 
@@ -102,7 +107,7 @@
   }
   .lightbox.open { display: flex; }
   .lightbox img { max-height: 88vh; max-width: 92vw; border-radius: 12px; }
-  .lightbox button {
+  .lightbox #close {
     position: absolute; top: 20px; inset-inline-end: 24px;
     background: none; border: none; color: #fff; font-size: 40px; cursor: pointer;
   }
@@ -113,12 +118,14 @@
   .step .num {
     width: 56px; height: 56px; margin: 0 auto 14px; border-radius: 50%;
     background: var(--grad); display: flex; align-items: center; justify-content: center;
-    font-weight: 700; font-size: 20px;
+    font-weight: 800; font-size: 22px;
   }
-  .step p { color: var(--muted); font-size: 15px; }
+  .step h3 { font-size: 20px; }
+  .step p { color: var(--muted); font-size: 16px; }
 
   /* Contact */
   .contact { text-align: center; background: var(--surface); }
+  .contact .section-title { margin-bottom: 0; }
   .contact p { color: var(--muted); margin-bottom: 28px; }
   .wa {
     display: inline-block; padding: 16px 36px; border-radius: 40px;
@@ -126,7 +133,8 @@
   }
   .wa:hover { filter: brightness(1.1); }
 
-  footer { text-align: center; padding: 30px; color: #666; font-size: 14px; border-top: 1px solid rgba(255,255,255,.06); }
+  footer { text-align: center; padding: 30px; color: #666; font-size: 15px; border-top: 1px solid rgba(255,255,255,.06); }
+  footer b { letter-spacing: 2px; color: #999; }
 
   @media (max-width: 800px) {
     .hero { grid-template-columns: 1fr; text-align: center; }
@@ -154,7 +162,7 @@
     <p>تصميم لوجوهات، هويات بصرية كاملة، بوسترات، وإعلانات سوشيال ميديا لشركات ومشاريع تبدأ وتكبر.</p>
     <a class="btn" href="#contact">اطلب تصميمك</a>
   </div>
-  <img class="hero-img" src="images/hero.jpg" alt="إقدام أسامة - تصميم وتحليل بيانات">
+  <img class="hero-img" src="1793610599984_images/hero.jpg" width="800" height="600" alt="EQDAM - تصميم الهوية البصرية">
 </section>
 
 <section id="services">
@@ -184,36 +192,36 @@
     <p class="sub">اضغط على أي عمل لعرضه بالحجم الكامل</p>
   </div>
   <div class="gallery">
-    <div class="item" data-src="images/aroma-logo.jpg">
-      <img src="images/aroma-logo.jpg" alt="لوجو Aroma Mills">
+    <div class="item" data-src="1793610599984_images/aroma-logo.jpg">
+      <img src="1793610599984_images/aroma-logo.jpg" alt="لوجو Aroma Mills" loading="lazy">
       <div class="cap"><span class="tag">لوجو</span><br>Aroma Mills</div>
     </div>
-    <div class="item" data-src="images/aroma-packaging.jpg">
-      <img src="images/aroma-packaging.jpg" alt="تغليف Aroma Mills">
+    <div class="item" data-src="1793610599984_images/aroma-packaging.jpg">
+      <img src="1793610599984_images/aroma-packaging.jpg" alt="تغليف Aroma Mills" loading="lazy">
       <div class="cap"><span class="tag">تغليف</span><br>Aroma Mills</div>
     </div>
-    <div class="item" data-src="images/nasij-winter.jpg">
-      <img src="images/nasij-winter.jpg" alt="بوست Nasij الشتوي">
+    <div class="item" data-src="1793610599984_images/nasij-winter.jpg">
+      <img src="1793610599984_images/nasij-winter.jpg" alt="بوست Nasij الشتوي" loading="lazy">
       <div class="cap"><span class="tag">سوشيال ميديا</span><br>Nasij - Winter Collection</div>
     </div>
-    <div class="item" data-src="images/nasij-logo.jpg">
-      <img src="images/nasij-logo.jpg" alt="لوجو Nasij">
+    <div class="item" data-src="1793610599984_images/nasij-logo.jpg">
+      <img src="1793610599984_images/nasij-logo.jpg" alt="لوجو Nasij" loading="lazy">
       <div class="cap"><span class="tag">لوجو</span><br>Nasij</div>
     </div>
-    <div class="item" data-src="images/nasij-bag.jpg">
-      <img src="images/nasij-bag.jpg" alt="تغليف Nasij">
+    <div class="item" data-src="1793610599984_images/nasij-bag.jpg">
+      <img src="1793610599984_images/nasij-bag.jpg" alt="تغليف Nasij" loading="lazy">
       <div class="cap"><span class="tag">تغليف</span><br>Nasij</div>
     </div>
-    <div class="item" data-src="images/khatwa-guidelines.jpg">
-      <img src="images/khatwa-guidelines.jpg" alt="دليل هوية KHATWA">
+    <div class="item" data-src="1793610599984_images/khatwa-guidelines.jpg">
+      <img src="1793610599984_images/khatwa-guidelines.jpg" alt="دليل هوية KHATWA" loading="lazy">
       <div class="cap"><span class="tag">هوية بصرية</span><br>KHATWA - Brand Guidelines</div>
     </div>
-    <div class="item" data-src="images/khatwa-clock.jpg">
-      <img src="images/khatwa-clock.jpg" alt="بوست KHATWA">
+    <div class="item" data-src="1793610599984_images/khatwa-clock.jpg">
+      <img src="1793610599984_images/khatwa-clock.jpg" alt="بوست KHATWA" loading="lazy">
       <div class="cap"><span class="tag">سوشيال ميديا</span><br>KHATWA</div>
     </div>
-    <div class="item" data-src="images/khatwa-cards.jpg">
-      <img src="images/khatwa-cards.jpg" alt="كارت شخصية KHATWA">
+    <div class="item" data-src="1793610599984_images/khatwa-cards.jpg">
+      <img src="1793610599984_images/khatwa-cards.jpg" alt="كارت شخصية KHATWA" loading="lazy">
       <div class="cap"><span class="tag">مطبوعات</span><br>KHATWA - Business Cards</div>
     </div>
   </div>
@@ -244,12 +252,14 @@
 </section>
 
 <section class="contact" id="contact">
-  <h2>خلينا نبدأ مشروعك</h2>
-  <p>ابعتلي على واتساب وقولي فكرتك باختصار.</p>
+  <div class="section-title">
+    <h2>خلينا نبدأ مشروعك</h2>
+    <p class="sub">ابعتلي على واتساب وقولي فكرتك باختصار.</p>
+  </div>
   <a class="wa" href="https://wa.me/201061476825" target="_blank" rel="noopener">تواصل عبر واتساب</a>
 </section>
 
-<footer>© إقدام أسامة - جميع الحقوق محفوظة</footer>
+<footer><b>EQDAM</b> © جميع الحقوق محفوظة</footer>
 
 <div class="lightbox" id="lightbox">
   <button id="close" aria-label="إغلاق">&times;</button>
