@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EQDAM | Brand Identity & Digital Design</title>
+<meta name="description" content="EQDAM: استوديو تصميم للهوية البصرية، اللوجوهات، التغليف، والسوشيال ميديا.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --ink: #f2f0ea;
+    --muted: #8d8b84;
+    --line: rgba(242,240,234,.14);
+    --accent: #c9a96e;
+    --ease: cubic-bezier(.22,1,.36,1);
+    --dur: .9s;
+    --pad: clamp(20px, 5vw, 72px);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--ink); font-family: "Cairo", "Inter", sans-serif; line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; }
+  img { display: block; max-width: 100%; }
+  .latin { font-family: "Inter", sans-serif; }
+  .wrap { padding: 0 var(--pad); max-width: 1600px; margin: 0 auto; }
+
+  /* ---------- Editorial primitives ---------- */
+  .meta { display: flex; justify-content: space-between; align-items: center; gap: 20px; font-family: "Inter", sans-serif; font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); padding: 18px 0; border-top: 1px solid var(--line); }
+  .meta b { color: var(--ink); font-weight: 600; }
+  .display { font-weight: 900; line-height: .98; letter-spacing: -.035em; }
+  .big { font-size: clamp(56px, 10.5vw, 180px); }
+  .h2 { font-size: clamp(40px, 6.2vw, 96px); font-weight: 900; line-height: 1.02; letter-spacing: -.03em; }
+  .lead { font-size: clamp(17px, 1.5vw, 21px); color: var(--muted); max-width: 520px; }
+  section { padding: clamp(96px, 14vw, 200px) 0; position: relative; }
+  .accent { color: var(--accent); }
+  .outline { color: transparent; -webkit-text-stroke: 1px var(--ink); }
+
+  /* ---------- Motion (single rule) ---------- */
+  .rise { opacity: 0; transform: translateY(32px); transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease); transition-delay: var(--d, 0ms); }
+  .rise.in { opacity: 1; transform: none; }
+  .words .w { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: .08em; margin-bottom: -.08em; }
+  .words .w > span { display: inline-block; transform: translateY(105%); transition: transform var(--dur) var(--ease); transition-delay: calc(var(--i) * 55ms + var(--d, 0ms)); }
+  .words.in .w > span { transform: none; }
+
+  /* ---------- Header ---------- */
+  header { position: fixed; inset: 0 0 auto; z-index: 50; transition: transform .6s var(--ease), background .5s var(--ease); }
+  header.scrolled { background: rgba(10,10,10,.82); backdrop-filter: blur(12px); }
+  header.hide { transform: translateY(-100%); }
+  .nav { display: flex; justify-content: space-between; align-items: center; height: 84px; }
+  .logo { font-family: "Inter", sans-serif; font-weight: 800; font-size: 18px; letter-spacing: .32em; }
+  .menu { display: flex; gap: 40px; align-items: center; font-size: 14px; }
+  .menu a { color: var(--muted); transition: color .3s; }
+  .menu a:hover { color: var(--ink); }
+  .menu .pill { color: var(--bg); background: var(--ink); padding: 10px 22px; border-radius: 999px; font-weight: 700; }
+  .menu .pill:hover { background: var(--accent); color: var(--bg); }
+
+  /* ---------- Hero ---------- */
+  .hero { min-height: 100vh; padding-top: 140px; display: flex; flex-direction: column; justify-content: space-between; padding-bottom: 40px; }
+  .hero .meta { border-color: var(--line); }
+  .hero-title { margin: 6vh 0 5vh; }
+  .hero-title .line { display: block; }
+  .hero-bottom { display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px; align-items: end; padding-top: 40px; border-top: 1px solid var(--line); }
+  .hero-bottom .lead { margin-bottom: 36px; }
+  .actions { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn { display: inline-flex; align-items: center; gap: 12px; padding: 17px 30px; border-radius: 999px; font-weight: 700; font-size: 15px; transition: background .4s var(--ease), color .4s var(--ease), border-color .4s var(--ease); }
+  .btn-solid { background: var(--ink); color: var(--bg); }
+  .btn-solid:hover { background: var(--accent); }
+  .btn-line { border: 1px solid var(--line); }
+  .btn-line:hover { border-color: var(--ink); }
+  .arr { font-family: "Inter", sans-serif; }
+
+  /* ---------- Ticker ---------- */
+  .ticker { border-block: 1px solid var(--line); overflow: hidden; padding: 26px 0; }
+  .ticker-track { display: flex; gap: 48px; width: max-content; animation: slide 46s linear infinite; }
+  .ticker span { font-family: "Inter", sans-serif; font-weight: 800; font-size: clamp(28px, 4vw, 52px); letter-spacing: -.02em; text-transform: uppercase; white-space: nowrap; }
+  .ticker span.o { color: transparent; -webkit-text-stroke: 1px var(--ink); }
+  .ticker span.s { color: var(--accent); font-size: .6em; align-self: center; }
+  @keyframes slide { to { transform: translateX(-50%); } }
+
+  /* ---------- Services ---------- */
+  .svc-head { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: end; margin-bottom: 90px; }
+  .svc-list { border-top: 1px solid var(--line); }
+  .svc-row { display: grid; grid-template-columns: 90px 1.2fr 1fr 60px; gap: 30px; align-items: center; padding: 42px 0; border-bottom: 1px solid var(--line); transition: padding .6s var(--ease); }
+  .svc-row:hover { padding-inline-start: 18px; }
+  .svc-row .n { font-family: "Inter", sans-serif; font-size: 14px; color: var(--muted); }
+  .svc-row h3 { font-size: clamp(30px, 3.6vw, 52px); font-weight: 900; line-height: 1.05; letter-spacing: -.02em; }
+  .svc-row p { color: var(--muted); font-size: 15px; }
+  .svc-row .go { font-family: "Inter", sans-serif; font-size: 24px; justify-self: end; color: var(--muted); transition: color .4s, transform .6s var(--ease); }
+  .svc-row:hover .go { color: var(--accent); transform: rotate(-45deg); }
+
+  /* ---------- Work ---------- */
+  .work { border-top: 1px solid var(--line); }
+  .work-head { display: flex; justify-content: space-between; align-items: end; gap: 40px; flex-wrap: wrap; margin-bottom: 70px; }
+  .filters { display: flex; gap: 6px; flex-wrap: wrap; }
+  .filter { background: none; border: 1px solid var(--line); color: var(--muted); padding: 10px 18px; border-radius: 999px; font-size: 14px; cursor: pointer; transition: all .3s; }
+  .filter:hover { color: var(--ink); }
+  .filter.active { background: var(--ink); color: var(--bg); border-color: var(--ink); font-weight: 700; }
+  .project { display: grid; grid-template-columns: 90px 1fr 280px 120px 50px; gap: 30px; align-items: center; padding: 34px 0; border-top: 1px solid var(--line); cursor: pointer; transition: opacity .5s var(--ease), transform .5s var(--ease); }
+  .project:last-child { border-bottom: 1px solid var(--line); }
+  .project .n { font-family: "Inter", sans-serif; font-size: 14px; color: var(--muted); }
+  .project h4 { font-size: clamp(26px, 3vw, 44px); font-weight: 900; line-height: 1.1; letter-spacing: -.02em; transition: color .4s; }
+  .project .cat { font-family: "Inter", sans-serif; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+  .project .yr { font-family: "Inter", sans-serif; font-size: 14px; color: var(--muted); text-align: end; }
+  .project .go { font-family: "Inter", sans-serif; font-size: 22px; justify-self: end; transition: transform .6s var(--ease), color .4s; }
+  .project:hover h4 { color: var(--accent); }
+  .project:hover .go { transform: rotate(-45deg); color: var(--accent); }
+  .project .thumb { height: 150px; border-radius: 6px; overflow: hidden; position: relative; background: #151515; border: 1px solid var(--line); }
+  .project .thumb span { position: absolute; inset: 0; display: grid; place-items: center; font-family: "Inter", sans-serif; font-size: 12px; letter-spacing: .16em; color: var(--muted); text-transform: uppercase; }
+  .project.out { opacity: 0; transform: translateY(12px); pointer-events: none; }
+  .project.gone { display: none; }
+
+  /* ---------- Process ---------- */
+  .proc { background: var(--ink); color: var(--bg); }
+  .proc .meta { border-color: rgba(10,10,10,.2); color: rgba(10,10,10,.6); }
+  .proc .meta b { color: var(--bg); }
+  .proc-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; border-top: 1px solid rgba(10,10,10,.2); margin-top: 60px; }
+  .proc-step { padding: 50px 36px 10px 0; border-inline-start: 0; }
+  .proc-step + .proc-step { padding-inline-start: 36px; border-inline-start: 1px solid rgba(10,10,10,.2); }
+  .proc-step .n { font-family: "Inter", sans-serif; font-size: 96px; font-weight: 800; line-height: 1; letter-spacing: -.04em; display: block; margin-bottom: 36px; }
+  .proc-step h3 { font-size: 30px; font-weight: 900; margin-bottom: 14px; line-height: 1.15; }
+  .proc-step p { font-size: 15px; color: rgba(10,10,10,.7); max-width: 300px; }
+
+  /* ---------- About ---------- */
+  .about-grid { display: grid; grid-template-columns: 5fr 7fr; gap: clamp(40px, 6vw, 110px); align-items: start; }
+  .about-frame { aspect-ratio: 4/5; background: #141414; border: 1px solid var(--line); position: relative; overflow: hidden; }
+  .about-frame span { position: absolute; inset: 0; display: grid; place-items: center; font-family: "Inter", sans-serif; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+  .about-copy .h2 { margin-bottom: 40px; }
+  .about-copy p { color: var(--muted); font-size: 17px; max-width: 580px; margin-bottom: 18px; }
+  .sig { margin-top: 44px; display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; }
+  .sig strong { font-size: 26px; font-weight: 800; }
+  .sig span { font-family: "Inter", sans-serif; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+  .facts-row { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 60px; border-top: 1px solid var(--line); }
+  .facts-row div { padding: 24px 20px 0 0; }
+  .facts-row div + div { border-inline-start: 1px solid var(--line); padding-inline-start: 20px; }
+  .facts-row strong { display: block; font-size: 18px; font-weight: 700; }
+  .facts-row span { color: var(--muted); font-size: 14px; }
+
+  /* ---------- Contact ---------- */
+  .contact { border-top: 1px solid var(--line); }
+  .contact .h2 { font-size: clamp(56px, 9vw, 150px); }
+  .contact-row { display: flex; justify-content: space-between; align-items: end; gap: 40px; flex-wrap: wrap; margin-top: 50px; }
+  .contact-row .lead { max-width: 420px; }
+  .btn-wa { background: #25D366; color: #fff; font-size: 17px; padding: 20px 38px; }
+  .btn-wa:hover { background: #1fb858; }
+
+  /* ---------- Footer ---------- */
+  footer { padding: 60px 0 36px; border-top: 1px solid var(--line); overflow: hidden; }
+  .foot-mark { font-family: "Inter", sans-serif; font-weight: 900; font-size: clamp(64px, 19vw, 320px); letter-spacing: -.05em; line-height: .85; color: var(--ink); white-space: nowrap; }
+  .foot-bar { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 14px; color: var(--muted); font-size: 14px; margin-top: 36px; }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 1000px) {
+    .menu a:not(.pill) { display: none; }
+    .hero-bottom, .svc-head, .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    .svc-row { grid-template-columns: 50px 1fr 30px; }
+    .svc-row p { grid-column: 2 / 3; }
+    .svc-row .go { grid-row: 1; grid-column: 3; }
+    .project { grid-template-columns: 50px 1fr 40px; }
+    .project .cat, .project .yr { grid-column: 2; text-align: start; }
+    .project .thumb { display: none; }
+    .project .go { grid-row: 1; grid-column: 3; }
+    .proc-grid { grid-template-columns: 1fr; }
+    .proc-step, .proc-step + .proc-step { padding: 40px 0; border-inline-start: 0; border-top: 1px solid rgba(10,10,10,.2); }
+    .proc-step + .proc-step { padding-inline-start: 0; }
+    .facts-row { grid-template-columns: 1fr; }
+    .facts-row div + div { border-inline-start: 0; padding-inline-start: 0; border-top: 1px solid var(--line); margin-top: 20px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .rise, .words .w > span { opacity: 1 !important; transform: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header id="hdr">
+  <div class="wrap nav">
+    <a href="#top" class="logo">EQDAM</a>
+    <nav class="menu">
+      <a href="#services">الخدمات</a>
+      <a href="#work">الأعمال</a>
+      <a href="#process">طريقة العمل</a>
+      <a href="#about">عني</a>
+      <a href="#contact" class="pill">ابدأ مشروعك</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+<section class="hero">
+  <div class="wrap" style="width:100%">
+    <div class="meta rise"><span><b>EQDAM</b> — Brand Identity Studio</span><span>Digital Design · Egypt</span></div>
+    <h1 class="display big hero-title words">
+      <span class="line">نصمم براندك</span>
+      <span class="line outline">ليتذكره العميل</span>
+    </h1>
+    <div class="hero-bottom rise" style="--d:.2s">
+      <div>
+        <p class="lead">لوجوهات، هويات بصرية كاملة، تغليف، وبوسترات وإعلانات سوشيال ميديا، بتركيز على الوضوح والتفاصيل اللي بتفرق.</p>
+      </div>
+      <div class="actions" style="justify-content:flex-end">
+        <a href="#contact" class="btn btn-solid">اطلب تصميمك <span class="arr">←</span></a>
+        <a href="#work" class="btn btn-line">شوف الأعمال</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span>Logo</span><span class="s">✦</span><span class="o">Identity</span><span class="s">✦</span><span>Packaging</span><span class="s">✦</span><span class="o">Social</span><span class="s">✦</span><span>Print</span><span class="s">✦</span><span class="o">Campaigns</span><span class="s">✦</span>
+    <span>Logo</span><span class="s">✦</span><span class="o">Identity</span><span class="s">✦</span><span>Packaging</span><span class="s">✦</span><span class="o">Social</span><span class="s">✦</span><span>Print</span><span class="s">✦</span><span class="o">Campaigns</span><span class="s">✦</span>
+  </div>
+</div>
+
+<section id="services">
+  <div class="wrap">
+    <div class="meta rise"><span><b>01</b> — Services</span><span>3 disciplines</span></div>
+    <div class="svc-head" style="margin-top:70px">
+      <h2 class="h2 words">كل اللي براندك محتاجه في مكان واحد</h2>
+      <p class="lead rise" style="--d:.15s;justify-self:end">من أول فكرة للوجو لحد التطبيق على التغليف والسوشيال ميديا، تحت سقف واحد وبنفس الذوق.</p>
+    </div>
+    <div class="svc-list">
+      <div class="svc-row rise">
+        <span class="n">01</span>
+        <h3>الهوية البصرية</h3>
+        <p>لوجو، لوحة ألوان، خطوط، كروت، ودليل إرشادات يحافظ على البراند في كل نقطة اتصال.</p>
+        <span class="go">↖</span>
+      </div>
+      <div class="svc-row rise" style="--d:.08s">
+        <span class="n">02</span>
+        <h3>التغليف والمنتجات</h3>
+        <p>أكياس وعلب وملصقات تخلي المنتج يبان أغلى وتلفت النظر من أول نظرة على الرف.</p>
+        <span class="go">↖</span>
+      </div>
+      <div class="svc-row rise" style="--d:.16s">
+        <span class="n">03</span>
+        <h3>السوشيال والإعلانات</h3>
+        <p>بوستات، بوسترات، وحملات موسمية بمقاس كل منصة، ورسالة واضحة في ثانية.</p>
+        <span class="go">↖</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="work" class="work">
+  <div class="wrap">
+    <div class="work-head">
+      <div>
+        <div class="meta rise" style="border:0;padding:0;margin-bottom:40px"><span><b>02</b> — Selected Work</span></div>
+        <h2 class="h2 words">مشاريع مختارة</h2>
+      </div>
+      <div class="filters rise" style="--d:.15s">
+        <button class="filter active" data-f="all">الكل</button>
+        <button class="filter" data-f="logo">لوجوهات</button>
+        <button class="filter" data-f="identity">هوية</button>
+        <button class="filter" data-f="packaging">تغليف</button>
+        <button class="filter" data-f="social">سوشيال</button>
+      </div>
+    </div>
+    <div class="project rise" data-cat="packaging">
+      <span class="n">01</span><h4>مشروع تغليف</h4><div class="thumb"><span>مساحة العمل</span></div><span class="cat">Packaging</span><span class="go">↗</span>
+    </div>
+    <div class="project rise" data-cat="logo">
+      <span class="n">02</span><h4>لوجو</h4><div class="thumb"><span>مساحة العمل</span></div><span class="cat">Logo Design</span><span class="go">↗</span>
+    </div>
+    <div class="project rise" data-cat="social">
+      <span class="n">03</span><h4>بوست سوشيال</h4><div class="thumb"><span>مساحة العمل</span></div><span class="cat">Social Media</span><span class="go">↗</span>
+    </div>
+    <div class="project rise" data-cat="identity">
+      <span class="n">04</span><h4>هوية بصرية</h4><div class="thumb"><span>مساحة العمل</span></div><span class="cat">Brand Identity</span><span class="go">↗</span>
+    </div>
+    <div class="project rise" data-cat="identity">
+      <span class="n">05</span><h4>مطبوعات</h4><div class="thumb"><span>مساحة العمل</span></div><span class="cat">Print</span><span class="go">↗</span>
+    </div>
+    <div class="project rise" data-cat="packaging">
+      <span class="n">06</span><h4>تغليف</h4><div class="thumb"><span>مساحة العمل</span></div><span class="cat">Packaging</span><span class="go">↗</span>
+    </div>
+    <div class="project rise" data-cat="social">
+      <span class="n">07</span><h4>حملة سوشيال</h4><div class="thumb"><span>مساحة العمل</span></div><span class="cat">Campaign</span><span class="go">↗</span>
+    </div>
+    <div class="project rise" data-cat="logo">
+      <span class="n">08</span><h4>لوجو</h4><div class="thumb"><span>مساحة العمل</span></div><span class="cat">Logo Design</span><span class="go">↗</span>
+    </div>
+  </div>
+</section>
+
+<section id="process" class="proc">
+  <div class="wrap">
+    <div class="meta rise"><span><b>03</b> — Process</span><span>From idea to delivery</span></div>
+    <h2 class="h2 words" style="margin-top:60px">من الفكرة للتسليم في ثلاث خطوات</h2>
+    <div class="proc-grid">
+      <div class="proc-step rise"><span class="n">01</span><h3>نفهم براندك</h3><p>نتكلم عن مشروعك وجمهورك وأهدافك، وبعدين نحدد الاتجاه البصري.</p></div>
+      <div class="proc-step rise" style="--d:.1s"><span class="n">02</span><h3>نصمم الفكرة</h3><p>نجهز أكتر من اتجاه بصري، ونختار الأقوى مع بعض.</p></div>
+      <div class="proc-step rise" style="--d:.2s"><span class="n">03</span><h3>نعدّل ونسلّم</h3><p>نراجع التفاصيل معاك لحد ما تكون راضي، ونسلّم الملفات النهائية بصيغها.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap about-grid">
+    <div class="about-frame rise"><span>Portrait · 4:5</span></div>
+    <div class="about-copy">
+      <div class="meta rise" style="border:0;padding:0;margin-bottom:40px"><span><b>04</b> — About</span></div>
+      <h2 class="h2 words">تصميم بيفهم الهدف قبل الشكل</h2>
+      <p class="rise" style="--d:.1s">EQDAM بتشتغل على الهوية البصرية والإعلانات للمشاريع اللي عايزة تبان بشكل محترف من أول يوم.</p>
+      <p class="rise" style="--d:.15s">بنهتم بالتفاصيل: الخطوط المقروءة، التباين، والتناسق بين كل قطعة في البراند.</p>
+      <div class="sig rise" style="--d:.2s"><strong class="accent">EQDAM</strong><span>Brand Identity Studio</span></div>
+      <div class="facts-row rise" style="--d:.25s">
+        <div><strong>هوية</strong><span>لوجو وألوان وخطوط</span></div>
+        <div><strong>تغليف</strong><span>منتجات ومطبوعات</span></div>
+        <div><strong>سوشيال</strong><span>محتوى وإعلانات</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="wrap">
+    <div class="meta rise"><span><b>05</b> — Contact</span><span>Let's talk</span></div>
+    <h2 class="display h2 words" style="margin-top:60px">خلينا نبني براندك</h2>
+    <div class="contact-row">
+      <p class="lead rise" style="--d:.15s">ابعتلي على واتساب وقولي فكرتك باختصار، وهنرد عليك في أقرب وقت.</p>
+      <a class="btn btn-wa rise" style="--d:.25s" href="https://wa.me/201061476825" target="_blank" rel="noopener">تواصل عبر واتساب <span class="arr">←</span></a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-mark">EQDAM</div>
+    <div class="foot-bar">
+      <span>© EQDAM · جميع الحقوق محفوظة</span>
+      <a href="#top">للأعلى ↑</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(() => {
+  // Split headings into words for the mask reveal
+  document.querySelectorAll('.words').forEach(el => {
+    let i = 0;
+    const wrap = (text) => text.split(/\s+/).filter(Boolean).map(w =>
+      `<span class="w"><span style="--i:${i++}">${w}</span></span>`).join(' ');
+    const tmp = document.createElement('div');
+    tmp.innerHTML = el.innerHTML;
+    let out = '';
+    tmp.childNodes.forEach(n => {
+      if (n.nodeType === 3) out += wrap(n.textContent);
+      else if (n.nodeType === 1) {
+        const c = n.cloneNode(false);
+        c.innerHTML = wrap(n.textContent);
+        out += c.outerHTML;
+      }
+    });
+    el.innerHTML = out;
+  });
+
+  // One reveal observer for the whole page
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(en => {
+      if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+    });
+  }, { threshold: 0.2, rootMargin: '0px 0px -60px 0px' });
+  document.querySelectorAll('.rise, .words').forEach(el => io.observe(el));
+
+  // Header state
+  const hdr = document.getElementById('hdr');
+  let lastY = 0;
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    hdr.classList.toggle('scrolled', y > 40);
+    hdr.classList.toggle('hide', y > lastY && y > 500);
+    lastY = y;
+  }, { passive: true });
+
+  // Filters
+  const rows = [...document.querySelectorAll('.project')];
+  document.querySelectorAll('.filter').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter').forEach(b => b.classList.toggle('active', b === btn));
+      const f = btn.dataset.f;
+      rows.forEach(r => {
+        const show = f === 'all' || r.dataset.cat === f;
+        if (show) {
+          r.classList.remove('gone');
+          requestAnimationFrame(() => r.classList.remove('out'));
+        } else {
+          r.classList.add('out');
+          setTimeout(() => { if (r.classList.contains('out')) r.classList.add('gone'); }, 500);
+        }
+      });
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
